@@ -1,9 +1,13 @@
+require('dotenv').config()
 const express = require('express');
 const fs= require("fs");
 const {join} = require('path')
-const app = express();
-const PORT = 3000;
+
+
+const PORT = process.env.PORT ?? 3000;
 const LOG_PATH = join(process.cwd(), "logs");
+
+const app = express();
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 app.post('/webhook', (req, res,) => {

@@ -3,3 +3,4 @@ package-lock.json
 ./logs/*
 .idea
 .vscode
+.env
