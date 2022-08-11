@@ -34,6 +34,10 @@ app.post('/webhook', (req, res,) => {
     }
 });
 
+app.get('/webhook', (req, res,) => {
+    res.send("Hello from WebHook tester App")
+})
+
 app.listen(PORT, () => {
     console.log("#######################################################")
     console.log(`Webhook tester listen in :${PORT}`);
