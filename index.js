@@ -5,7 +5,7 @@ const {join} = require('path')
 
 
 const PORT = process.env.PORT ?? 3000;
-const LOG_PATH = process.env.LOG_PATH ?? "./logs"
+const LOGS_PATH = process.env.LOGS_PATH ?? "./logs"
 
 const app = express();
 app.use(express.json())
@@ -13,7 +13,7 @@ app.use(express.urlencoded({ extended: true }))
 app.post('/webhook', (req, res,) => {
     try {
         const body = req.body
-        const filePath = join(LOG_PATH, `${Date.now()}-webhook.json`)
+        const filePath = join(LOGS_PATH, `${Date.now()}-webhook.json`)
 
         const toSave = {
             body,
@@ -41,6 +41,6 @@ app.get('/webhook', (req, res,) => {
 app.listen(PORT, () => {
     console.log("#######################################################")
     console.log(`Webhook tester listen in local port: ${PORT}`);
-    console.log(`Logs is saved in path: ${LOG_PATH}`);
+    console.log(`Logs is saved in path: ${LOGS_PATH}`);
     console.log("#######################################################")
 });
