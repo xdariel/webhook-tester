@@ -5,7 +5,7 @@ const {join} = require('path')
 
 
 const PORT = process.env.PORT ?? 3000;
-const LOG_PATH = join(process.cwd(), "logs");
+const LOG_PATH = process.env.LOG_PATH ?? "./logs"
 
 const app = express();
 app.use(express.json())
@@ -40,7 +40,7 @@ app.get('/webhook', (req, res,) => {
 
 app.listen(PORT, () => {
     console.log("#######################################################")
-    console.log(`Webhook tester listen in :${PORT}`);
-    console.log(`Logs in :${LOG_PATH}`);
+    console.log(`Webhook tester listen in local port: ${PORT}`);
+    console.log(`Logs is saved in path: ${LOG_PATH}`);
     console.log("#######################################################")
 });
