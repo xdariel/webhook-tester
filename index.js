@@ -16,9 +16,15 @@ app.post('/webhook', (req, res,) => {
         const filePath = join(LOGS_PATH, `${Date.now()}-webhook.json`)
 
         const toSave = {
+            type: typeof body,
             body,
             date: new Date()
         }
+
+        console.log("---------------------body-----------------------")
+        console.log("TYPE: ", typeof body)
+        console.log(body)
+        console.log("---------------------body-----------------------")
 
         fs.writeFile(filePath, JSON.stringify(toSave), 'utf8', (err) => {
             if (err)
