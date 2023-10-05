@@ -1,5 +1,7 @@
 require('dotenv').config()
 const express = require('express');
+const serveIndex = require('serve-index')
+
 const fs= require("fs");
 const {join} = require('path')
 
@@ -19,12 +21,14 @@ const app = express();
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
+app.use('/files', express.static(LOGS_PATH), serveIndex(LOGS_PATH, {'icons': true}))
+
 app.post('/webhook/:app', (req, res,) => {
     try {
 
         const app = req.params.app
         const body = req.body
-        const filePath = join(LOGS_PATH, `${Date.now()}-webhook.json`)
+        const filePath = join(LOGS_PATH, `[${app}]-${Date.now()}-webhook.json`)
 
         const toSave = {
             type: typeof body,
